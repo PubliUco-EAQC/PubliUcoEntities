@@ -2,16 +2,16 @@ package co.edu.uco.publiuco.entities;
 
 import java.util.UUID;
 
-public class PreferenciaEscritorEntity {
+public class PreferenciaCategoriaEntity {
     private UUID identificador;
     private PerfilEntity perfil;
-    private EscritorEntity escritor;
+    private CategoriaEntity categoria;
 
-
-    public PreferenciaEscritorEntity(UUID identificador, PerfilEntity perfil, EscritorEntity escritor) {
-        setIdentificador(identificador);
-        setPerfil(perfil);
-        setEscritor(escritor);
+    public PreferenciaCategoriaEntity(UUID identificador, PerfilEntity perfil, CategoriaEntity categoria) {
+     super();
+     setIdentificador(identificador);
+     setPerfil(perfil);
+     setCategoria(categoria);
     }
 
     public UUID getIdentificador() {
@@ -22,8 +22,8 @@ public class PreferenciaEscritorEntity {
         return perfil;
     }
 
-    public EscritorEntity getEscritor() {
-        return escritor;
+    public CategoriaEntity getCategoria() {
+        return categoria;
     }
 
     private void setIdentificador(UUID identificador) {
@@ -34,7 +34,7 @@ public class PreferenciaEscritorEntity {
         this.perfil = perfil;
     }
 
-    private void setEscritor(EscritorEntity escritor) {
-        this.escritor = escritor;
+    private void setCategoria(CategoriaEntity categoria) {
+        this.categoria = categoria;
     }
 }
