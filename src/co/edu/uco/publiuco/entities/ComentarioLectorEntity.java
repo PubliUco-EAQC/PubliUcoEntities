@@ -1,6 +1,5 @@
 package co.edu.uco.publiuco.entities;
 
-import co.edu.uco.publiuco.crosscutting.utils.UtilDate;
 import co.edu.uco.publiuco.crosscutting.utils.UtilText;
 import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
@@ -17,7 +16,7 @@ public final class ComentarioLectorEntity {
 	private LocalDateTime fechaCalificacion;
 	private EstadoEntity estado;
 
-	public ComentarioLectorEntity(UUID identificador, LectorEntity lector, PublicacionEntity publicacion, ComentarioLectorDTO comentarioPadre, String contenido, LocalDateTime fechaCalificacion, EstadoDTO estado) {
+	public ComentarioLectorEntity(UUID identificador, LectorEntity lector, PublicacionEntity publicacion, ComentarioLectorEntity comentarioPadre, String contenido, LocalDateTime fechaCalificacion, EstadoEntity estado) {
 		super();
 		setIdentificador(identificador);
 		setLector(lector);
