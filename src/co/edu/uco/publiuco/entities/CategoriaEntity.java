@@ -1,15 +1,27 @@
 package co.edu.uco.publiuco.entities;
 
+import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
 import co.edu.uco.publiuco.crosscutting.utils.UtilText;
+import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
 import java.util.UUID;
 
-public class CategoriaEntity {
+public final class CategoriaEntity {
     private UUID identificador;
     private CategoriaEntity categoriaPadre;
     private String nombre;
     private String descripcion;
     private EstadoEntity estado;
+    public static CategoriaEntity DEFAULT_OBJECT = new CategoriaEntity();
+
+    private CategoriaEntity() {
+        super();
+        setIdentificador(UtilUUID.getDefaultValue());
+        setCategoriaPadre(CategoriaEntity.getDefaultObject());
+        setNombre(UtilText.getDefaultValue());
+        setDescripcion(UtilText.getDefaultValue());
+        setEstado(EstadoEntity.getDefaultObject());
+    }
 
     public CategoriaEntity(UUID identificador, CategoriaEntity categoriaPadre, String nombre, String descripcion, EstadoEntity estado) {
         super();
@@ -20,25 +32,6 @@ public class CategoriaEntity {
         setEstado(estado);
     }
 
-    public final void setIdentificador(UUID identificador) {
-        this.identificador = identificador;
-    }
-
-    public final void setCategoriaPadre(CategoriaEntity categoriaPadre) {
-        this.categoriaPadre = categoriaPadre;
-    }
-
-    public final void setNombre(String nombre) {
-        this.nombre = UtilText.applyTrim(nombre);
-    }
-
-    public final void setDescripcion(String descripcion) {
-        this.descripcion = UtilText.applyTrim(descripcion);
-    }
-
-    public final void setEstado(EstadoEntity estado) {
-        this.estado = estado;
-    }
 
     public UUID getIdentificador() {
         return identificador;
@@ -58,5 +51,28 @@ public class CategoriaEntity {
 
     public EstadoEntity getEstado() {
         return estado;
+    }
+
+     private void setIdentificador(final UUID identificador) {
+        this.identificador = UtilUUID.getDefault(identificador);
+     }
+
+    private void setCategoriaPadre(final CategoriaEntity categoriaPadre) {
+        this.categoriaPadre = UtilObject.getDefault(categoriaPadre, CategoriaEntity.getDefaultObject());
+    }
+
+    private void setNombre(final String nombre) {
+        this.nombre = UtilText.applyTrim(nombre);
+    }
+
+    private void setDescripcion(final String descripcion) {
+        this.descripcion = UtilText.applyTrim(descripcion);
+    }
+
+    private void setEstado(EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    }
+    public static CategoriaEntity getDefaultObject (){
+        return DEFAULT_OBJECT;
     }
 }

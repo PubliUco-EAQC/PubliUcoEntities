@@ -1,6 +1,7 @@
 package co.edu.uco.publiuco.entities;
 
 
+import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
 import co.edu.uco.publiuco.crosscutting.utils.UtilText;
 import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
@@ -12,6 +13,16 @@ public final class EstadoEntity {
     private UUID identificador;
     private String nombre;
     private TipoEstadoEntity tipoEstado;
+    public static EstadoEntity DEFAULT_OBJECT = new EstadoEntity();
+
+
+    private EstadoEntity() {
+        super();
+        setIdentificador(UtilUUID.getDefaultValue());
+        setNombre(UtilText.getDefaultValue());
+        setTipoEstado(TipoEstadoEntity.getDefaultObject());
+    }
+
 
     public EstadoEntity(UUID identificador, String nombre, TipoEstadoEntity tipoEstado) {
         super();
@@ -29,7 +40,8 @@ public final class EstadoEntity {
     }
 
     private final void setTipoEstado(final TipoEstadoEntity tipoEstado) {
-        this.tipoEstado = tipoEstado;
+
+        this.tipoEstado = UtilObject.getDefault(tipoEstado, TipoEstadoEntity.getDefaultObject());
     }
 
     public final UUID getIdentificador() {
@@ -42,5 +54,9 @@ public final class EstadoEntity {
 
     public final TipoEstadoEntity getTipoEstado() {
         return tipoEstado;
+    }
+
+    public static EstadoEntity getDefaultObject(){
+        return DEFAULT_OBJECT;
     }
 }

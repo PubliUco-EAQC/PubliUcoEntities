@@ -1,5 +1,6 @@
 package co.edu.uco.publiuco.entities;
 
+import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
 import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
 import java.util.UUID;
@@ -8,6 +9,15 @@ public final class CategoriaAdministradorCategoriaEntity {
 	private UUID identificador;
 	private CategoriaEntity categoria;
 	private AdministradorCategoriaEntity administradorCategoria;
+	public static CategoriaAdministradorCategoriaEntity DEFAULT_OBJECT = new CategoriaAdministradorCategoriaEntity();
+
+	private CategoriaAdministradorCategoriaEntity() {
+		super();
+		setIdentificador(UtilUUID.getDefaultValue());
+		setCategoria(CategoriaEntity.getDefaultObject());
+		setAdministradorCategoria(AdministradorCategoriaEntity.getDefaultObject());
+	}
+
 
 	public CategoriaAdministradorCategoriaEntity(UUID identificador, CategoriaEntity categoria, AdministradorCategoriaEntity administradorCategoria) {
 		super();
@@ -16,16 +26,17 @@ public final class CategoriaAdministradorCategoriaEntity {
 		setAdministradorCategoria(administradorCategoria);
 	}
 
-	public final void setIdentificador(final UUID identificador) {
+	private final void setIdentificador(final UUID identificador) {
 		this.identificador = UtilUUID.getDefault(identificador);
 	}
 
-	public final void setCategoria(final CategoriaEntity categoria) {
-		this.categoria = categoria;
+	private final void setCategoria(final CategoriaEntity categoria) {
+		this.categoria = UtilObject.getDefault(categoria, CategoriaEntity.getDefaultObject());
 	}
 
-	public final void setAdministradorCategoria(final AdministradorCategoriaEntity administradorCategoria) {
-		this.administradorCategoria = administradorCategoria;
+	private final void setAdministradorCategoria(final AdministradorCategoriaEntity administradorCategoria) {
+
+		this.administradorCategoria = UtilObject.getDefault(administradorCategoria, AdministradorCategoriaEntity.getDefaultObject());
 	}
 
 	public UUID getIdentificador() {
@@ -38,5 +49,9 @@ public final class CategoriaAdministradorCategoriaEntity {
 
 	public AdministradorCategoriaEntity getAdministradorCategoria() {
 		return administradorCategoria;
+	}
+
+	public static CategoriaAdministradorCategoriaEntity getDefaultObject (){
+		return DEFAULT_OBJECT;
 	}
 }

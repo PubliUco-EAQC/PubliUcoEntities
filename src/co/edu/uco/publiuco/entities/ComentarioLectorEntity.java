@@ -1,9 +1,10 @@
 package co.edu.uco.publiuco.entities;
 
+import co.edu.uco.publiuco.crosscutting.utils.UtilDate;
+import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
 import co.edu.uco.publiuco.crosscutting.utils.UtilText;
 import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 public final class ComentarioLectorEntity {
@@ -12,20 +13,36 @@ public final class ComentarioLectorEntity {
 	private LectorEntity lector;
 	private PublicacionEntity publicacion;
 	private ComentarioLectorEntity comentarioPadre;
-	private String cotenido;
+	private String contenido;
 	private LocalDateTime fechaCalificacion;
 	private EstadoEntity estado;
+	public static ComentarioLectorEntity DEFAULT_OBJECT = new ComentarioLectorEntity();
+
+
+	private ComentarioLectorEntity() {
+		super();
+		setIdentificador(UtilUUID.getDefaultValue());
+		setLector(LectorEntity.getDefaultObject());
+		setPublicacion(PublicacionEntity.getDefaultObject());
+		setComentarioPadre(getDefaultObject());
+		setContenido(UtilText.getDefaultValue());
+		setFechaCalificacion(UtilDate.getDefaultValue());
+		setEstado(EstadoEntity.getDefaultObject() );
+	}
+
 
 	public ComentarioLectorEntity(UUID identificador, LectorEntity lector, PublicacionEntity publicacion, ComentarioLectorEntity comentarioPadre, String contenido, LocalDateTime fechaCalificacion, EstadoEntity estado) {
 		super();
 		setIdentificador(identificador);
 		setLector(lector);
-		setPublicacion(publicacion);
 		setComentarioPadre(comentarioPadre);
-		setCotenido(contenido);
+		setPublicacion(publicacion);
+		setContenido(contenido);
 		setFechaCalificacion(fechaCalificacion);
 		setEstado(estado);
 	}
+
+
 
 	public UUID getIdentificador() {
 		return identificador;
@@ -44,7 +61,7 @@ public final class ComentarioLectorEntity {
 	}
 
 	public String getCotenido() {
-		return cotenido;
+		return contenido;
 	}
 
 	public LocalDateTime getFechaCalificacion() {
@@ -54,33 +71,36 @@ public final class ComentarioLectorEntity {
 	public EstadoEntity getEstado() {
 		return estado;
 	}
-	
-	private final void setIdentificador(UUID identificador) {
-		this.identificador = identificador;
+
+	private void setIdentificador(final UUID identificador) {
+		this.identificador = UtilUUID.getDefault(identificador);
 	}
 
-	private final void setLector(LectorEntity lector) {
-		this.lector = lector;
+	private void setLector(final LectorEntity lector) {
+		this.lector = UtilObject.getDefault(lector, LectorEntity.getDefaultObject());
 	}
 
-	private final void setPublicacion(PublicacionEntity publicacion) {
-		this.publicacion = publicacion;
+	private void setPublicacion(final PublicacionEntity publicacion) {
+		this.publicacion = UtilObject.getDefault(publicacion, PublicacionEntity.getDefaultObject());
 	}
 
-	private final void setComentarioPadre(final ComentarioLectorEntity comentarioPadre) {
-		this.comentarioPadre = comentarioPadre;
+	private void setComentarioPadre(final ComentarioLectorEntity comentarioPadre) {
+		this.comentarioPadre = UtilObject.getDefault(comentarioPadre, ComentarioLectorEntity.getDefaultObject());
 	}
 
-	private final void setEstado(final EstadoEntity estado) {
+	private void setEstado(final EstadoEntity estado) {
 		this.estado = estado;
 	}
 
-	private final void setCotenido(String cotenido) {
-		this.cotenido = cotenido;
+	private void setContenido(final String contenido) {
+		this.contenido = contenido;
 	}
 
-	private final void setFechaCalificacion(LocalDateTime fechaCalificacion) {
+	private void setFechaCalificacion(final LocalDateTime fechaCalificacion) {
 		this.fechaCalificacion = fechaCalificacion;
 	}
-	
+
+	public static ComentarioLectorEntity getDefaultObject() {
+		return DEFAULT_OBJECT;
+	}
 }
