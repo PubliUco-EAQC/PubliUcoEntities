@@ -1,7 +1,7 @@
 package co.edu.uco.publiuco.entities;
 
-import co.edu.uco.publiuco.crosscutting.utils.UtilText;
-import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
+import co.edu.uco.publiuco.utils.UtilText;
+import co.edu.uco.publiuco.utils.UtilUUID;
 
 import java.util.UUID;
 
@@ -16,7 +16,7 @@ public final class TipoIdentificacionEntity {
         setNombre(UtilText.getDefaultValue());
         setDescripcion(UtilText.getDefaultValue());
     }
-    public TipoIdentificacionEntity(UUID identificador, String nombre, String descripcion, EstadoEntity estado) {
+    public TipoIdentificacionEntity(UUID identificador, String nombre, String descripcion) {
         setIdentificador(identificador);
         setNombre(nombre);
         setDescripcion(descripcion);

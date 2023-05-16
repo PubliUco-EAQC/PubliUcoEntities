@@ -1,10 +1,10 @@
 package co.edu.uco.publiuco.entities;
 
-import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
-import co.edu.uco.publiuco.crosscutting.utils.UtilText;
-import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
-
 import java.util.UUID;
+
+import co.edu.uco.publiuco.utils.UtilObject;
+import co.edu.uco.publiuco.utils.UtilText;
+import co.edu.uco.publiuco.utils.UtilUUID;
 
 public final class TipoEscritorEntity {
     private UUID identificador;
