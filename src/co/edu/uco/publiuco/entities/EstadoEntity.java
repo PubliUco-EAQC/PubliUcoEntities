@@ -22,6 +22,18 @@ public final class EstadoEntity {
         setNombre(UtilText.getDefaultValue());
         setTipoEstado(TipoEstadoEntity.getDefaultObject());
     }
+    
+    public static final EstadoEntity createWithIdentificador(UUID identificador) {
+        return new EstadoEntity(identificador, UtilText.getDefaultValue(), TipoEstadoEntity.getDefaultObject());
+    }
+    
+    public static final EstadoEntity createWithName(String name) {
+        return new EstadoEntity(UtilUUID.getDefaultValue(), name, TipoEstadoEntity.getDefaultObject());
+    }
+    
+    public static final EstadoEntity createWithTipoEstado(UUID identificador) {
+        return new EstadoEntity(UtilUUID.getDefaultValue(), UtilText.getDefaultValue(), TipoEstadoEntity.getDefaultObject());
+    }
 
 
     public EstadoEntity(UUID identificador, String nombre, TipoEstadoEntity tipoEstado) {
