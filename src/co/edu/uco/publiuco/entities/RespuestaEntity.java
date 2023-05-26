@@ -6,10 +6,9 @@ import co.edu.uco.publiuco.utils.UtilText;
 import co.edu.uco.publiuco.utils.UtilUUID;
 
 public final class RespuestaEntity {
-    private UUID identificador;
+	private UUID identificador;
     private String nombre;
     private String descripcion;
-    public static RespuestaEntity DEFAULT_OBJECT = new RespuestaEntity();
 
     private RespuestaEntity() {
         setIdentificador(UtilUUID.getDefaultValue());
@@ -35,18 +34,21 @@ public final class RespuestaEntity {
         return descripcion;
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public RespuestaEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setNombre(final String nombre) {
+    public RespuestaEntity setNombre(final String nombre) {
         this.nombre = UtilText.applyTrim(nombre);
+        return this;
     }
 
-    private void setDescripcion(final String descripcion) {
+    public RespuestaEntity setDescripcion(final String descripcion) {
         this.descripcion = UtilText.applyTrim(descripcion);
+        return this;
     }
-    public static RespuestaEntity getDefaultObject (){
-        return DEFAULT_OBJECT;
+    public static RespuestaEntity create (){
+        return new RespuestaEntity();
     }
 }

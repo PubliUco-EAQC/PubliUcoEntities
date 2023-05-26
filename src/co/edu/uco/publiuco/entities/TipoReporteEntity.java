@@ -49,7 +49,10 @@ public final class TipoReporteEntity {
     public static TipoReporteEntity getDefaultObject (){
         return DEFAULT_OBJECT;
     }
-
+    
+    public static TipoReporteEntity create (){
+        return new TipoReporteEntity();
+    }
 
 }
 

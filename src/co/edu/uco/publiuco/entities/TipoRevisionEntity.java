@@ -50,7 +50,9 @@ public final class TipoRevisionEntity {
         return DEFAULT_OBJECT;
     }
 
-
+    public static TipoRevisionEntity create (){
+        return new TipoRevisionEntity();
+    }
 }
 
 
