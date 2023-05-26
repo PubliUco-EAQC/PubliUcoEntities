@@ -60,6 +60,9 @@ public final class TipoRelacionInstitucionEntity {
         return DEFAULT_OBJECT;
     }
 
+    public static TipoRelacionInstitucionEntity create (){
+        return new TipoRelacionInstitucionEntity();
+    }
 }
 
 

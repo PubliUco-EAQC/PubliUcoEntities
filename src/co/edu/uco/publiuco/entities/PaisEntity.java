@@ -51,4 +51,7 @@ public final class PaisEntity {
     public static PaisEntity getDefaultObject (){
         return DEFAULT_OBJECT;
     }
+    public static PaisEntity create (){
+        return new PaisEntity();
+    }
 }

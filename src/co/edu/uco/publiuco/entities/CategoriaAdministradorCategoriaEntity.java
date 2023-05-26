@@ -5,17 +5,15 @@ import java.util.UUID;
 import co.edu.uco.publiuco.utils.UtilObject;
 import co.edu.uco.publiuco.utils.UtilUUID;
 public final class CategoriaAdministradorCategoriaEntity {
-
 	private UUID identificador;
 	private CategoriaEntity categoria;
 	private AdministradorCategoriaEntity administradorCategoria;
-	public static CategoriaAdministradorCategoriaEntity DEFAULT_OBJECT = new CategoriaAdministradorCategoriaEntity();
 
 	private CategoriaAdministradorCategoriaEntity() {
 		super();
 		setIdentificador(UtilUUID.getDefaultValue());
-		setCategoria(CategoriaEntity.getDefaultObject());
-		setAdministradorCategoria(AdministradorCategoriaEntity.getDefaultObject());
+		setCategoria(CategoriaEntity.create());
+		setAdministradorCategoria(AdministradorCategoriaEntity.create());
 	}
 
 
@@ -26,17 +24,20 @@ public final class CategoriaAdministradorCategoriaEntity {
 		setAdministradorCategoria(administradorCategoria);
 	}
 
-	private final void setIdentificador(final UUID identificador) {
+	public final CategoriaAdministradorCategoriaEntity setIdentificador(final UUID identificador) {
 		this.identificador = UtilUUID.getDefault(identificador);
+		return this;
 	}
 
-	private final void setCategoria(final CategoriaEntity categoria) {
-		this.categoria = UtilObject.getDefault(categoria, CategoriaEntity.getDefaultObject());
+	public final CategoriaAdministradorCategoriaEntity setCategoria(final CategoriaEntity categoria) {
+		this.categoria = UtilObject.getDefault(categoria, CategoriaEntity.create());
+		return this;
 	}
 
-	private final void setAdministradorCategoria(final AdministradorCategoriaEntity administradorCategoria) {
+	public final CategoriaAdministradorCategoriaEntity setAdministradorCategoria(final AdministradorCategoriaEntity administradorCategoria) {
 
-		this.administradorCategoria = UtilObject.getDefault(administradorCategoria, AdministradorCategoriaEntity.getDefaultObject());
+		this.administradorCategoria = UtilObject.getDefault(administradorCategoria, AdministradorCategoriaEntity.create());
+		return this;
 	}
 
 	public UUID getIdentificador() {
@@ -52,6 +53,6 @@ public final class CategoriaAdministradorCategoriaEntity {
 	}
 
 	public static CategoriaAdministradorCategoriaEntity getDefaultObject (){
-		return DEFAULT_OBJECT;
+		return new CategoriaAdministradorCategoriaEntity();
 	}
 }

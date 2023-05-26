@@ -50,6 +50,10 @@ public final class TipoIdentificacionEntity {
     public static TipoIdentificacionEntity getDefaultObject (){
         return DEFAULT_OBJECT;
     }
+    
+    public static TipoIdentificacionEntity create (){
+        return new TipoIdentificacionEntity();
+    }
 }
 
 

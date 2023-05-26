@@ -9,51 +9,48 @@ import co.edu.uco.publiuco.utils.UtilUUID;
 
 
 public final class EstadoEntity {
-
-    private UUID identificador;
+	private UUID identificador;
     private String nombre;
-    private TipoEstadoEntity tipoEstado;
-    public static EstadoEntity DEFAULT_OBJECT = new EstadoEntity();
+    private String descripcion;
+    private TipoEstadoEntity tipo;
 
 
     private EstadoEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
         setNombre(UtilText.getDefaultValue());
-        setTipoEstado(TipoEstadoEntity.getDefaultObject());
-    }
-    
-    public static final EstadoEntity createWithIdentificador(UUID identificador) {
-        return new EstadoEntity(identificador, UtilText.getDefaultValue(), TipoEstadoEntity.getDefaultObject());
-    }
-    
-    public static final EstadoEntity createWithName(String name) {
-        return new EstadoEntity(UtilUUID.getDefaultValue(), name, TipoEstadoEntity.getDefaultObject());
-    }
-    
-    public static final EstadoEntity createWithTipoEstado(UUID identificador) {
-        return new EstadoEntity(UtilUUID.getDefaultValue(), UtilText.getDefaultValue(), TipoEstadoEntity.getDefaultObject());
+        setDescripcion(UtilText.getDefaultValue());
+        setTipo(TipoEstadoEntity.create());
     }
 
 
-    public EstadoEntity(UUID identificador, String nombre, TipoEstadoEntity tipoEstado) {
+    public EstadoEntity(UUID identificador, String nombre, TipoEstadoEntity tipo, String descripcion) {
         super();
         setIdentificador(identificador);
         setNombre(nombre);
-        setTipoEstado(tipoEstado);
+        setDescripcion(descripcion);
+        setTipo(tipo);
     }
 
-    private final void setIdentificador(final UUID identificador) {
+    public final EstadoEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private final void setNombre(final String nombre) {
+    public final EstadoEntity setNombre(final String nombre) {
         this.nombre = UtilText.applyTrim(nombre);
+        return this;
+    }
+    
+    public final EstadoEntity setDescripcion(final String descripcion) {
+        this.descripcion = UtilText.applyTrim(descripcion);
+        return this;
     }
 
-    private final void setTipoEstado(final TipoEstadoEntity tipoEstado) {
+    public final EstadoEntity setTipo(final TipoEstadoEntity tipoEstado) {
 
-        this.tipoEstado = UtilObject.getDefault(tipoEstado, TipoEstadoEntity.getDefaultObject());
+        this.tipo = UtilObject.getDefault(tipoEstado, TipoEstadoEntity.create());
+        return this;
     }
 
     public final UUID getIdentificador() {
@@ -64,11 +61,15 @@ public final class EstadoEntity {
         return nombre;
     }
 
-    public final TipoEstadoEntity getTipoEstado() {
-        return tipoEstado;
+    public final TipoEstadoEntity getTipo() {
+        return tipo;
     }
+    
+    public String getDescripcion() {
+		return descripcion;
+	}
 
-    public static EstadoEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static EstadoEntity create(){
+        return new EstadoEntity();
     }
 }

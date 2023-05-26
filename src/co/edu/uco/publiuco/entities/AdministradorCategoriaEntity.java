@@ -5,18 +5,16 @@ import co.edu.uco.publiuco.utils.UtilObject;
 import co.edu.uco.publiuco.utils.UtilUUID;
 
 public final class AdministradorCategoriaEntity {
-    private UUID identificador;
+	private UUID identificador;
     private PersonaEntity datosPersona;
     private EstadoEntity estado;
-    public static AdministradorCategoriaEntity DEFAULT_OBJECT = new AdministradorCategoriaEntity();
     private AdministradorCategoriaEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setPersona(PersonaEntity.getDefaultObject());
-        setEstado(EstadoEntity.getDefaultObject());
+        setPersona(PersonaEntity.create());
+        setEstado(EstadoEntity.create());
     }
-
-
+    
     public AdministradorCategoriaEntity(UUID identificador, PersonaEntity persona, EstadoEntity estado) {
         super();
         setIdentificador(identificador);
@@ -24,23 +22,27 @@ public final class AdministradorCategoriaEntity {
         setEstado(estado);
     }
 
-    private final void setIdentificador(final UUID identificador) {
+    public final AdministradorCategoriaEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private final void setPersona(final PersonaEntity datosPersona) {
-        this.datosPersona = UtilObject.getDefault(datosPersona, PersonaEntity.getDefaultObject());
+    public final AdministradorCategoriaEntity setPersona(final PersonaEntity datosPersona) {
+        this.datosPersona = UtilObject.getDefault(datosPersona, PersonaEntity.create());
+        return this;
     }
 
-    private final void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public final AdministradorCategoriaEntity setEstado(final EstadoEntity estado) {
+
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public final UUID getIdentificador() {
         return identificador;
     }
 
-    public final PersonaEntity getPersona() {
+    public final PersonaEntity getDatosPersona() {
         return datosPersona;
     }
 
@@ -48,7 +50,7 @@ public final class AdministradorCategoriaEntity {
         return estado;
     }
 
-    public static AdministradorCategoriaEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
-	}
+    public static AdministradorCategoriaEntity create(){
+        return new AdministradorCategoriaEntity();
+    }
 }
