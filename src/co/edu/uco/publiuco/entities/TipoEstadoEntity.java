@@ -1,7 +1,6 @@
 package co.edu.uco.publiuco.entities;
 
 import java.util.UUID;
-
 import co.edu.uco.publiuco.utils.UtilText;
 import co.edu.uco.publiuco.utils.UtilUUID;
 
@@ -15,13 +14,14 @@ public final class TipoEstadoEntity {
         setNombre(UtilText.getDefaultValue());
         setDescripcion(UtilText.getDefaultValue());
     }
+    
     public TipoEstadoEntity(UUID identificador, String nombre, String descripcion) {
         setIdentificador(identificador);
         setNombre(nombre);
         setDescripcion(descripcion);
     }
 
-    public UUID getIdentificador() {
+	public UUID getIdentificador() {
         return identificador;
     }
 
